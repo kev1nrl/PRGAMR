@@ -3,15 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRGAMR</title>
-  <meta name="description" content="PRGAMR — sitio web del proyecto.">
+  <title>PRGAMR — Arcade retro, alma moderna</title>
+  <meta name="description" content="PRGAMR es un salón recreativo digital: juegos con alma retro y estética synthwave, torneos comunitarios y marcadores globales, directo desde el navegador.">
+  <meta name="theme-color" content="#0b0518">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PRGAMR — Arcade retro, alma moderna">
+  <meta property="og:description" content="Un salón recreativo digital donde el pixel art se encuentra con el gaming moderno: juegos, torneos y comunidad.">
+  <meta property="og:locale" content="es_ES">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <a href="#inicio" class="skip-enlace">Saltar al contenido</a>
+
   <header class="header">
     <div class="header__contenido">
-      <a href="#inicio" class="header__logo">PRGAMR</a>
+      <a href="#inicio" class="header__logo">PRG<span class="header__logo-acento">AMR</span></a>
 
       <button class="header__toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-principal">
         <span class="header__toggle-linea"></span>
@@ -23,8 +36,11 @@
       <nav class="nav" id="nav-principal">
         <ul class="nav__lista">
           <li class="nav__item"><a href="#inicio" class="nav__enlace">Inicio</a></li>
-          <li class="nav__item"><a href="#sobre" class="nav__enlace">Sobre el proyecto</a></li>
-          <li class="nav__item"><a href="#contacto" class="nav__enlace">Contacto</a></li>
+          <li class="nav__item"><a href="#juegos" class="nav__enlace">Juegos</a></li>
+          <li class="nav__item"><a href="#novedades" class="nav__enlace">Novedades</a></li>
+          <li class="nav__item"><a href="#arcade" class="nav__enlace">Arcade</a></li>
+          <li class="nav__item"><a href="#marcadores" class="nav__enlace">Marcadores</a></li>
+          <li class="nav__item"><a href="#comentarios" class="nav__enlace">Comentarios</a></li>
         </ul>
       </nav>
     </div>
@@ -32,32 +48,415 @@
 
   <main>
     <section class="hero" id="inicio">
+      <div class="hero__rejilla" aria-hidden="true"></div>
       <div class="hero__contenido">
-        <h1 class="hero__titulo">PRGAMR</h1>
-        <p class="hero__texto">Página en construcción. Este es el punto de partida del sitio.</p>
-        <a href="#sobre" class="boton boton--primario">Saber más</a>
+        <p class="hero__eyebrow" aria-hidden="true">INSERT COIN TO CONTINUE</p>
+        <h1 class="hero__titulo" data-texto="PRGAMR">PRGAMR</h1>
+        <p class="hero__subtitulo">Arcade retro. Alma moderna.</p>
+        <p class="hero__texto">
+          Un salón recreativo digital donde el brillo de los píxeles de siempre se combina
+          con el pulso del gaming actual: juegos nuevos, torneos comunitarios y un
+          marcador global esperando tu nombre.
+        </p>
+        <div class="hero__acciones">
+          <a href="#juegos" class="boton boton--primario">Explorar juegos</a>
+          <a href="#comunidad" class="boton boton--secundario">Unirme a la comunidad</a>
+        </div>
+      </div>
+      <a href="#juegos" class="hero__scroll" aria-label="Desplazarse a la sección de juegos">
+        <span class="hero__scroll-linea" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <ul class="marquee__pista">
+        <li class="marquee__item">★ ARCADE</li>
+        <li class="marquee__item">PIXEL ART</li>
+        <li class="marquee__item">MULTIJUGADOR</li>
+        <li class="marquee__item">SYNTHWAVE</li>
+        <li class="marquee__item">TORNEOS</li>
+        <li class="marquee__item">HIGH SCORE</li>
+        <li class="marquee__item">COMUNIDAD</li>
+        <li class="marquee__item">★ ARCADE</li>
+        <li class="marquee__item">PIXEL ART</li>
+        <li class="marquee__item">MULTIJUGADOR</li>
+        <li class="marquee__item">SYNTHWAVE</li>
+        <li class="marquee__item">TORNEOS</li>
+        <li class="marquee__item">HIGH SCORE</li>
+        <li class="marquee__item">COMUNIDAD</li>
+      </ul>
+    </div>
+
+    <section class="seccion" id="sobre">
+      <div class="sobre">
+        <div class="sobre__texto reveal">
+          <h2 class="seccion__titulo">Sobre PRGAMR</h2>
+          <p class="seccion__texto">
+            PRGAMR nace de una idea simple: los salones recreativos nunca pasaron de moda,
+            solo estaban esperando el hardware adecuado. Mezclamos la estética pixel art
+            y las luces de neón de los años 80 con mecánicas, redes y comunidad 100%
+            actuales.
+          </p>
+          <p class="seccion__texto">
+            Nada de nostalgia vacía: juegos nuevos pensados para el navegador, sin
+            descargas ni instalaciones, con el mismo espíritu directo y competitivo de
+            la máquina recreativa de la esquina.
+          </p>
+        </div>
+        <div class="sobre__visual reveal" aria-hidden="true">
+          <div class="cabina">
+            <div class="cabina__pantalla">
+              <span class="cabina__texto">HIGH SCORE</span>
+            </div>
+            <div class="cabina__mando">
+              <div class="cabina__joystick"></div>
+              <div class="cabina__boton"></div>
+              <div class="cabina__boton"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="seccion" id="sobre">
-      <h2 class="seccion__titulo">Sobre el proyecto</h2>
-      <p class="seccion__texto">
-        Aquí va la descripción del proyecto PRGAMR. Sustituye este texto de ejemplo
-        por el contenido real cuando esté definido.
+    <section class="seccion seccion--alterna" id="juegos">
+      <h2 class="seccion__titulo">Juegos destacados</h2>
+      <p class="seccion__texto seccion__intro">
+        Nuestro primer catálogo está en construcción. Estos son los títulos con los que
+        abrimos el salón recreativo.
       </p>
+
+      <ul class="juegos__lista">
+        <li class="juego-card reveal">
+          <span class="juego-card__badge">Próximamente</span>
+          <h3 class="juego-card__titulo">Neon Raiders</h3>
+          <p class="juego-card__genero">Arcade · Shoot 'em up</p>
+          <p class="juego-card__texto">
+            Oleadas de naves en un cielo de neón. Reflejos rápidos y power-ups clásicos
+            con partículas modernas.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="juego-neon-raiders" data-base="184" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">184</span>
+            </button>
+          </div>
+        </li>
+        <li class="juego-card reveal">
+          <span class="juego-card__badge">Próximamente</span>
+          <h3 class="juego-card__titulo">Pixel Drift</h3>
+          <p class="juego-card__genero">Carreras · Arcade</p>
+          <p class="juego-card__texto">
+            Derrapes imposibles en circuitos pixel art con atajos secretos y modo
+            contrarreloj online.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="juego-pixel-drift" data-base="146" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">146</span>
+            </button>
+          </div>
+        </li>
+        <li class="juego-card reveal">
+          <span class="juego-card__badge">Próximamente</span>
+          <h3 class="juego-card__titulo">Vortex Arena</h3>
+          <p class="juego-card__genero">Acción · Battle</p>
+          <p class="juego-card__texto">
+            Arena minimalista, partidas cortas y mecánicas fáciles de aprender, difíciles
+            de dominar.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="juego-vortex-arena" data-base="97" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">97</span>
+            </button>
+          </div>
+        </li>
+        <li class="juego-card reveal">
+          <span class="juego-card__badge">Próximamente</span>
+          <h3 class="juego-card__titulo">Retro Rumble</h3>
+          <p class="juego-card__genero">Lucha · Cooperativo</p>
+          <p class="juego-card__texto">
+            Beat 'em up de scroll lateral pensado para jugar en pareja, en el mismo
+            teclado o en red.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="juego-retro-rumble" data-base="112" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">112</span>
+            </button>
+          </div>
+        </li>
+      </ul>
     </section>
 
-    <section class="seccion seccion--alterna" id="contacto">
-      <h2 class="seccion__titulo">Contacto</h2>
-      <p class="seccion__texto">
-        Datos de contacto o formulario a definir.
+    <section class="seccion" id="novedades">
+      <h2 class="seccion__titulo">Novedades del desarrollo</h2>
+      <p class="seccion__texto seccion__intro">
+        El diario de a bordo mientras construimos el catálogo. Aquí contamos cómo va cada
+        juego antes de que llegue a las máquinas.
       </p>
+
+      <ul class="novedades__lista">
+        <li class="devlog-card reveal">
+          <p class="devlog-card__fecha">Devlog #3 · 18 sep 2026</p>
+          <h3 class="devlog-card__titulo">Vortex Arena entra en pruebas cerradas</h3>
+          <p class="devlog-card__texto">
+            El primer grupo de la comunidad ya está probando las arenas. Estamos ajustando
+            el tiempo de respawn y el balance de las power-ups.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="devlog-3" data-base="53" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">53</span>
+            </button>
+          </div>
+        </li>
+        <li class="devlog-card reveal">
+          <p class="devlog-card__fecha">Devlog #2 · 02 sep 2026</p>
+          <h3 class="devlog-card__titulo">Primeros bocetos de Retro Rumble</h3>
+          <p class="devlog-card__texto">
+            Definimos el elenco inicial de personajes y probamos el modo cooperativo local
+            en teclado compartido.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="devlog-2" data-base="41" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">41</span>
+            </button>
+          </div>
+        </li>
+        <li class="devlog-card reveal">
+          <p class="devlog-card__fecha">Devlog #1 · 20 ago 2026</p>
+          <h3 class="devlog-card__titulo">Neon Raiders alcanza su primera build jugable</h3>
+          <p class="devlog-card__texto">
+            Naves, disparos y el primer jefe final ya funcionan de principio a fin. Toca
+            pulir las partículas y el sonido.
+          </p>
+          <div class="juego-card__pie">
+            <button class="reaccion" type="button" data-id="devlog-1" data-base="68" aria-pressed="false">
+              <span class="reaccion__icono" aria-hidden="true">♥</span>
+              <span class="reaccion__contador">68</span>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="seccion seccion--alterna" id="arcade">
+      <h2 class="seccion__titulo">Arcade rápido</h2>
+      <p class="seccion__texto seccion__intro">
+        Un adelanto jugable mientras terminamos el catálogo: esquiva los bloques de neón
+        el mayor tiempo posible. Mueve el ratón o el dedo sobre el tablero.
+      </p>
+
+      <div class="juego-arcade">
+        <div class="juego-arcade__marcador">
+          <p>Puntuación: <span id="arcade-puntuacion">0</span></p>
+          <p>Récord: <span id="arcade-record">0</span></p>
+        </div>
+        <div class="juego-arcade__tablero">
+          <canvas id="arcade-canvas" width="320" height="420"></canvas>
+          <div class="juego-arcade__overlay" id="arcade-overlay">
+            <p class="juego-arcade__overlay-titulo">Reto Neón</p>
+            <p class="juego-arcade__overlay-texto">Esquiva los bloques todo lo que puedas.</p>
+            <button class="boton boton--primario" id="arcade-iniciar" type="button">Jugar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="caracteristicas">
+      <h2 class="seccion__titulo">Por qué jugar aquí</h2>
+
+      <ul class="caracteristicas__lista">
+        <li class="caracteristica reveal">
+          <span class="caracteristica__icono" aria-hidden="true">▲</span>
+          <h3 class="caracteristica__titulo">Estética sin tiempo</h3>
+          <p class="caracteristica__texto">
+            Pixel art y neón synthwave con jugabilidad pensada para 2026, no para 1986.
+          </p>
+        </li>
+        <li class="caracteristica reveal">
+          <span class="caracteristica__icono" aria-hidden="true">◆</span>
+          <h3 class="caracteristica__titulo">Torneos comunitarios</h3>
+          <p class="caracteristica__texto">
+            Ligas semanales, retos por tiempo limitado y un marcador global siempre
+            activo.
+          </p>
+        </li>
+        <li class="caracteristica reveal">
+          <span class="caracteristica__icono" aria-hidden="true">●</span>
+          <h3 class="caracteristica__titulo">Multiplataforma</h3>
+          <p class="caracteristica__texto">
+            Directo desde el navegador, en escritorio o móvil, sin instalar nada.
+          </p>
+        </li>
+        <li class="caracteristica reveal">
+          <span class="caracteristica__icono" aria-hidden="true">■</span>
+          <h3 class="caracteristica__titulo">Comunidad activa</h3>
+          <p class="caracteristica__texto">
+            Discord, eventos en vivo y desarrollo abierto a las ideas de quien juega.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="seccion seccion--alterna" id="marcadores">
+      <h2 class="seccion__titulo">Marcadores globales</h2>
+      <p class="seccion__texto seccion__intro">
+        Una vista previa de cómo se verá la tabla de posiciones cuando abramos el
+        servidor.
+      </p>
+
+      <div class="marcadores__tabla-envoltorio">
+        <table class="marcadores__tabla">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Jugador</th>
+              <th scope="col">Juego</th>
+              <th scope="col">Puntuación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="marcadores__fila marcadores__fila--top1">
+              <td data-etiqueta="Posición">1</td>
+              <td data-etiqueta="Jugador">NEBULA_X</td>
+              <td data-etiqueta="Juego">Neon Raiders</td>
+              <td data-etiqueta="Puntuación"><span class="contador" data-hasta="984200">0</span></td>
+            </tr>
+            <tr class="marcadores__fila marcadores__fila--top2">
+              <td data-etiqueta="Posición">2</td>
+              <td data-etiqueta="Jugador">PIXELQUEEN</td>
+              <td data-etiqueta="Juego">Pixel Drift</td>
+              <td data-etiqueta="Puntuación"><span class="contador" data-hasta="871450">0</span></td>
+            </tr>
+            <tr class="marcadores__fila marcadores__fila--top3">
+              <td data-etiqueta="Posición">3</td>
+              <td data-etiqueta="Jugador">RETRO_KAI</td>
+              <td data-etiqueta="Juego">Vortex Arena</td>
+              <td data-etiqueta="Puntuación"><span class="contador" data-hasta="765300">0</span></td>
+            </tr>
+            <tr class="marcadores__fila">
+              <td data-etiqueta="Posición">4</td>
+              <td data-etiqueta="Jugador">8BIT_LUNA</td>
+              <td data-etiqueta="Juego">Retro Rumble</td>
+              <td data-etiqueta="Puntuación"><span class="contador" data-hasta="612900">0</span></td>
+            </tr>
+            <tr class="marcadores__fila">
+              <td data-etiqueta="Posición">5</td>
+              <td data-etiqueta="Jugador">DRIFT_VHS</td>
+              <td data-etiqueta="Juego">Pixel Drift</td>
+              <td data-etiqueta="Puntuación"><span class="contador" data-hasta="558100">0</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="seccion" id="comunidad">
+      <div class="comunidad reveal">
+        <h2 class="seccion__titulo">Únete a la comunidad</h2>
+        <p class="seccion__texto seccion__intro">
+          Estamos construyendo el salón recreativo. Deja tu correo y sé de los primeros
+          en entrar cuando abramos las máquinas.
+        </p>
+
+        <form class="comunidad__formulario" id="formulario-comunidad" novalidate>
+          <div class="comunidad__campo">
+            <label for="correo" class="comunidad__etiqueta">Correo electrónico</label>
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              class="comunidad__input"
+              placeholder="tunombre@correo.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+          <button type="submit" class="boton boton--primario">Quiero jugar primero</button>
+        </form>
+        <p class="comunidad__mensaje" id="comunidad-mensaje" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="seccion seccion--alterna" id="comentarios">
+      <h2 class="seccion__titulo">Comentarios</h2>
+      <p class="seccion__texto seccion__intro">
+        Cuéntanos qué juego quieres primero, propone ideas o preséntate. Los comentarios
+        se gestionan con tu cuenta de GitHub.
+      </p>
+
+      <!--
+        Comentarios con Giscus (https://giscus.app), guardados como GitHub Discussions.
+        Para activarlos de verdad:
+          1. Haz público el repositorio kev1nrl/PRGAMR y activa "Discussions" en
+             Settings > General > Features.
+          2. Instala la app https://github.com/apps/giscus en ese repositorio.
+          3. Entra en https://giscus.app, indica el repositorio y la categoría de
+             Discussions que quieras usar, y copia los valores data-repo-id y
+             data-category-id generados ahí para sustituir los de abajo.
+      -->
+      <div class="giscus"></div>
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="kev1nrl/PRGAMR"
+        data-repo-id="TU_REPO_ID_AQUI"
+        data-category="General"
+        data-category-id="TU_CATEGORY_ID_AQUI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark_dimmed"
+        data-lang="es"
+        crossorigin="anonymous"
+        async
+      ></script>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="footer__texto">&copy; <span id="anio-actual"></span> PRGAMR</p>
+    <div class="footer__contenido">
+      <a href="#inicio" class="header__logo footer__logo">PRG<span class="header__logo-acento">AMR</span></a>
+
+      <ul class="footer__social">
+        <li>
+          <a href="https://discord.com" class="footer__social-enlace" aria-label="PRGAMR en Discord" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M20.3 5.3A17.6 17.6 0 0 0 15.9 4c-.2.4-.5.9-.6 1.3a16.5 16.5 0 0 0-4.6 0c-.2-.4-.4-.9-.6-1.3-1.5.2-3 .7-4.4 1.3C2.9 9 2.2 12.6 2.5 16.1a17.7 17.7 0 0 0 5.4 2.7c.4-.6.8-1.2 1.1-1.9-.6-.2-1.2-.5-1.7-.9l.4-.3c3.3 1.5 6.9 1.5 10.2 0l.4.3c-.5.4-1.1.7-1.7.9.3.7.7 1.3 1.1 1.9a17.6 17.6 0 0 0 5.4-2.7c.4-4-.7-7.6-2.8-10.8ZM9.7 13.9c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm5.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com" class="footer__social-enlace" aria-label="PRGAMR en X" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M18.9 3H22l-7.2 8.2L23 21h-6.6l-5.2-6.4L5.2 21H2l7.7-8.8L1.5 3h6.8l4.7 5.9L18.9 3Zm-1.2 16h1.7L7.4 5H5.6l12.1 14Z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://youtube.com" class="footer__social-enlace" aria-label="PRGAMR en YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M22 12s0-3.4-.4-5c-.3-.9-1-1.6-1.9-1.9C18 4.7 12 4.7 12 4.7s-6 0-7.7.4c-.9.3-1.6 1-1.9 1.9C2 8.6 2 12 2 12s0 3.4.4 5c.3.9 1 1.6 1.9 1.9 1.7.4 7.7.4 7.7.4s6 0 7.7-.4c.9-.3 1.6-1 1.9-1.9.4-1.6.4-5 .4-5ZM10 15.5v-7l6 3.5-6 3.5Z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <p class="footer__texto">&copy; <span id="anio-actual"></span> PRGAMR — Arcade retro, alma moderna.</p>
+
+      <a href="#inicio" class="footer__volver" aria-label="Volver arriba">↑</a>
+    </div>
+
+    <p class="footer__pista">¿Conoces el código Konami? Pruébalo en cualquier parte de la página.</p>
   </footer>
+
+  <div class="secreto-overlay" id="secreto-overlay" role="status" aria-live="polite">
+    <p class="secreto-overlay__texto">¡MODO ARCADE SECRETO!</p>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>
