@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRGAMR</title>
+  <meta name="description" content="PRGAMR — sitio web del proyecto.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__contenido">
+      <a href="#inicio" class="header__logo">PRGAMR</a>
+
+      <button class="header__toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-principal">
+        <span class="header__toggle-linea"></span>
+        <span class="header__toggle-linea"></span>
+        <span class="header__toggle-linea"></span>
+        <span class="visually-hidden">Abrir menú</span>
+      </button>
+
+      <nav class="nav" id="nav-principal">
+        <ul class="nav__lista">
+          <li class="nav__item"><a href="#inicio" class="nav__enlace">Inicio</a></li>
+          <li class="nav__item"><a href="#sobre" class="nav__enlace">Sobre el proyecto</a></li>
+          <li class="nav__item"><a href="#contacto" class="nav__enlace">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero__contenido">
+        <h1 class="hero__titulo">PRGAMR</h1>
+        <p class="hero__texto">Página en construcción. Este es el punto de partida del sitio.</p>
+        <a href="#sobre" class="boton boton--primario">Saber más</a>
+      </div>
+    </section>
+
+    <section class="seccion" id="sobre">
+      <h2 class="seccion__titulo">Sobre el proyecto</h2>
+      <p class="seccion__texto">
+        Aquí va la descripción del proyecto PRGAMR. Sustituye este texto de ejemplo
+        por el contenido real cuando esté definido.
+      </p>
+    </section>
+
+    <section class="seccion seccion--alterna" id="contacto">
+      <h2 class="seccion__titulo">Contacto</h2>
+      <p class="seccion__texto">
+        Datos de contacto o formulario a definir.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__texto">&copy; <span id="anio-actual"></span> PRGAMR</p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
