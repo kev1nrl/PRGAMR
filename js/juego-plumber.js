@@ -24,50 +24,111 @@ const ALTO_ENEMIGO = 20;
 const VELOCIDAD_ENEMIGO = 45;
 
 const NIVEL = {
-  anchoTiles: 50,
+  // Nivel dividido en zonas con un ritmo propio: calentamiento, primer gancho
+  // de huecos seguidos, una colina de ladrillos con enemigos, un puente móvil
+  // sobre un hueco imposible de saltar, un islote de riesgo, una plataforma
+  // vertical con monedas de bonus, una zona de enemigos en manada y el tramo
+  // final antes de la bandera.
+  anchoTiles: 150,
   altoTiles: 9,
   colInicioJugador: 1,
   suelo: [
-    { desde: 0, hasta: 9 },
-    { desde: 12, hasta: 35 },
-    { desde: 39, hasta: 49 },
+    { desde: 0, hasta: 17 },
+    { desde: 19, hasta: 33 },
+    { desde: 36, hasta: 37 },
+    { desde: 40, hasta: 63 },
+    { desde: 71, hasta: 90 },
+    { desde: 94, hasta: 94 },
+    { desde: 98, hasta: 121 },
+    { desde: 124, hasta: 149 },
   ],
   bloques: [
-    { col: 17, fila: 4, tipo: 'interrogante' },
-    { col: 19, fila: 4, tipo: 'ladrillo' },
-    { col: 20, fila: 4, tipo: 'ladrillo' },
-    { col: 21, fila: 4, tipo: 'ladrillo' },
-    { col: 24, fila: 6, tipo: 'tuberia' },
-    { col: 24, fila: 5, tipo: 'tuberia' },
-    { col: 25, fila: 6, tipo: 'tuberia' },
-    { col: 25, fila: 5, tipo: 'tuberia' },
-    { col: 28, fila: 6, tipo: 'ladrillo' },
-    { col: 29, fila: 6, tipo: 'ladrillo' },
-    { col: 29, fila: 5, tipo: 'ladrillo' },
-    { col: 30, fila: 6, tipo: 'ladrillo' },
-    { col: 30, fila: 5, tipo: 'ladrillo' },
-    { col: 30, fila: 4, tipo: 'ladrillo' },
-    { col: 44, fila: 6, tipo: 'tuberia' },
-    { col: 44, fila: 5, tipo: 'tuberia' },
-    { col: 44, fila: 4, tipo: 'tuberia' },
-    { col: 45, fila: 6, tipo: 'tuberia' },
-    { col: 45, fila: 5, tipo: 'tuberia' },
-    { col: 45, fila: 4, tipo: 'tuberia' },
-    { col: 47, fila: 4, tipo: 'interrogante' },
+    // Zona A — calentamiento
+    { col: 9, fila: 4, tipo: 'interrogante' },
+    // Zona B — primera escalera y tubería
+    { col: 22, fila: 6, tipo: 'ladrillo' },
+    { col: 23, fila: 6, tipo: 'ladrillo' }, { col: 23, fila: 5, tipo: 'ladrillo' },
+    { col: 24, fila: 6, tipo: 'ladrillo' }, { col: 24, fila: 5, tipo: 'ladrillo' }, { col: 24, fila: 4, tipo: 'ladrillo' },
+    { col: 28, fila: 6, tipo: 'tuberia' }, { col: 28, fila: 5, tipo: 'tuberia' },
+    { col: 29, fila: 6, tipo: 'tuberia' }, { col: 29, fila: 5, tipo: 'tuberia' },
+    // Zona D — plataforma flotante, tubería alta y colina completa
+    { col: 43, fila: 4, tipo: 'ladrillo' }, { col: 44, fila: 4, tipo: 'ladrillo' }, { col: 45, fila: 4, tipo: 'ladrillo' },
+    { col: 49, fila: 4, tipo: 'interrogante' },
+    { col: 53, fila: 6, tipo: 'tuberia' }, { col: 53, fila: 5, tipo: 'tuberia' }, { col: 53, fila: 4, tipo: 'tuberia' },
+    { col: 54, fila: 6, tipo: 'tuberia' }, { col: 54, fila: 5, tipo: 'tuberia' }, { col: 54, fila: 4, tipo: 'tuberia' },
+    { col: 57, fila: 6, tipo: 'ladrillo' },
+    { col: 58, fila: 6, tipo: 'ladrillo' }, { col: 58, fila: 5, tipo: 'ladrillo' },
+    { col: 59, fila: 6, tipo: 'ladrillo' }, { col: 59, fila: 5, tipo: 'ladrillo' }, { col: 59, fila: 4, tipo: 'ladrillo' },
+    { col: 60, fila: 6, tipo: 'ladrillo' }, { col: 60, fila: 5, tipo: 'ladrillo' }, { col: 60, fila: 4, tipo: 'ladrillo' },
+    { col: 61, fila: 6, tipo: 'ladrillo' }, { col: 61, fila: 5, tipo: 'ladrillo' },
+    { col: 62, fila: 6, tipo: 'ladrillo' },
+    // Zona E — segunda escalera, bloque e interrogante y tubería
+    { col: 76, fila: 6, tipo: 'ladrillo' },
+    { col: 77, fila: 6, tipo: 'ladrillo' }, { col: 77, fila: 5, tipo: 'ladrillo' },
+    { col: 78, fila: 6, tipo: 'ladrillo' }, { col: 78, fila: 5, tipo: 'ladrillo' }, { col: 78, fila: 4, tipo: 'ladrillo' },
+    { col: 81, fila: 4, tipo: 'interrogante' },
+    { col: 84, fila: 6, tipo: 'tuberia' }, { col: 84, fila: 5, tipo: 'tuberia' },
+    { col: 85, fila: 6, tipo: 'tuberia' }, { col: 85, fila: 5, tipo: 'tuberia' },
+    // Zona F — interrogante, tubería alta junto al ascensor vertical
+    { col: 110, fila: 4, tipo: 'interrogante' },
+    { col: 114, fila: 6, tipo: 'tuberia' }, { col: 114, fila: 5, tipo: 'tuberia' }, { col: 114, fila: 4, tipo: 'tuberia' },
+    { col: 115, fila: 6, tipo: 'tuberia' }, { col: 115, fila: 5, tipo: 'tuberia' }, { col: 115, fila: 4, tipo: 'tuberia' },
+    // Zona G — colina final, tubería e interrogante antes de la bandera
+    { col: 129, fila: 6, tipo: 'ladrillo' },
+    { col: 130, fila: 6, tipo: 'ladrillo' }, { col: 130, fila: 5, tipo: 'ladrillo' },
+    { col: 131, fila: 6, tipo: 'ladrillo' }, { col: 131, fila: 5, tipo: 'ladrillo' }, { col: 131, fila: 4, tipo: 'ladrillo' },
+    { col: 132, fila: 6, tipo: 'ladrillo' }, { col: 132, fila: 5, tipo: 'ladrillo' }, { col: 132, fila: 4, tipo: 'ladrillo' },
+    { col: 133, fila: 6, tipo: 'ladrillo' }, { col: 133, fila: 5, tipo: 'ladrillo' },
+    { col: 134, fila: 6, tipo: 'ladrillo' },
+    { col: 137, fila: 6, tipo: 'tuberia' }, { col: 137, fila: 5, tipo: 'tuberia' },
+    { col: 138, fila: 6, tipo: 'tuberia' }, { col: 138, fila: 5, tipo: 'tuberia' },
+    { col: 140, fila: 4, tipo: 'interrogante' },
   ],
   monedas: [
-    { col: 4, fila: 5 }, { col: 5, fila: 5 },
-    { col: 19, fila: 3 }, { col: 20, fila: 3 }, { col: 21, fila: 3 },
-    { col: 28, fila: 5 }, { col: 29, fila: 4 }, { col: 30, fila: 3 },
-    { col: 40, fila: 5 }, { col: 41, fila: 5 }, { col: 42, fila: 5 },
+    { col: 3, fila: 5 }, { col: 4, fila: 5 },
+    { col: 24, fila: 2 },
+    { col: 31, fila: 5 }, { col: 32, fila: 5 },
+    { col: 36, fila: 5 },
+    { col: 43, fila: 3 }, { col: 44, fila: 3 }, { col: 45, fila: 3 },
+    { col: 58, fila: 4 }, { col: 59, fila: 2 }, { col: 60, fila: 4 },
+    { col: 72, fila: 5 }, { col: 73, fila: 5 },
+    { col: 78, fila: 2 },
+    { col: 88, fila: 5 }, { col: 89, fila: 5 },
+    { col: 94, fila: 5 },
+    { col: 99, fila: 5 }, { col: 100, fila: 5 },
+    { col: 105, fila: 2 }, { col: 106, fila: 2 }, { col: 107, fila: 2 },
+    { col: 119, fila: 5 }, { col: 120, fila: 5 },
+    { col: 125, fila: 5 }, { col: 126, fila: 5 },
+    { col: 131, fila: 3 }, { col: 132, fila: 3 }, { col: 133, fila: 3 },
+    { col: 142, fila: 5 }, { col: 143, fila: 5 }, { col: 144, fila: 5 },
   ],
   enemigos: [
-    { colInicial: 16, colMin: 13, colMax: 23 },
-    { colInicial: 32, colMin: 26, colMax: 35 },
-    { colInicial: 40, colMin: 39, colMax: 43 },
-    { colInicial: 42, colMin: 39, colMax: 43 },
+    { colInicial: 13, colMin: 11, colMax: 17 },
+    { colInicial: 26, colMin: 20, colMax: 33 },
+    { colInicial: 47, colMin: 41, colMax: 52 },
+    { colInicial: 57, colMin: 41, colMax: 63 },
+    { colInicial: 61, colMin: 41, colMax: 63 },
+    { colInicial: 75, colMin: 72, colMax: 90 },
+    { colInicial: 85, colMin: 72, colMax: 90 },
+    { colInicial: 102, colMin: 99, colMax: 121 },
+    { colInicial: 112, colMin: 99, colMax: 121 },
+    { colInicial: 118, colMin: 99, colMax: 121 },
+    { colInicial: 127, colMin: 125, colMax: 135 },
+    { colInicial: 140, colMin: 136, colMax: 146 },
   ],
-  colBandera: 48,
+  // Plataformas móviles: un puente horizontal para cruzar el hueco imposible
+  // de la zona D-E, y un ascensor vertical que lleva a monedas de bonus.
+  plataformas: [
+    {
+      tipo: 'horizontal', x: 64 * 24, y: 7 * 24, ancho: 48, alto: 8,
+      min: 64 * 24, max: 69 * 24, velocidad: 40, direccionInicial: 1,
+    },
+    {
+      tipo: 'vertical', x: 106 * 24, y: 7 * 24, ancho: 48, alto: 8,
+      min: 2 * 24, max: 7 * 24, velocidad: 35, direccionInicial: -1,
+    },
+  ],
+  colBandera: 147,
 };
 
 /* ---------- Sonido (reutiliza obtenerContextoAudio de main.js) ---------- */
@@ -194,6 +255,7 @@ function inicializarPlumberDash() {
   let bloques;
   let monedas;
   let enemigos;
+  let plataformas;
   let efectos;
   let camaraX = 0;
   let tiempoFueraDeSuelo = 0;
@@ -308,6 +370,44 @@ function inicializarPlumberDash() {
     agregarEfecto(bloque.col * TILE + TILE / 2, bloque.fila * TILE, '#f9e94e', '+1', 0.7);
   }
 
+  /* ---- Plataformas móviles ---- */
+
+  function actualizarPlataformas(delta) {
+    plataformas.forEach((plataforma) => {
+      const eje = plataforma.tipo === 'horizontal' ? 'x' : 'y';
+      const posicionAnterior = plataforma[eje];
+
+      plataforma[eje] += plataforma.velocidad * plataforma.direccion * delta;
+
+      if (plataforma[eje] <= plataforma.min) {
+        plataforma[eje] = plataforma.min;
+        plataforma.direccion = 1;
+      } else if (plataforma[eje] >= plataforma.max) {
+        plataforma[eje] = plataforma.max;
+        plataforma.direccion = -1;
+      }
+
+      plataforma.deltaX = plataforma.tipo === 'horizontal' ? plataforma[eje] - posicionAnterior : 0;
+    });
+  }
+
+  function llevarJugadorEnPlataformas() {
+    if (jugador.vy < 0) return;
+
+    plataformas.forEach((plataforma) => {
+      const piesJugador = jugador.y + jugador.alto;
+      const dentroX = jugador.x + jugador.ancho > plataforma.x && jugador.x < plataforma.x + plataforma.ancho;
+      const tocandoArriba = piesJugador >= plataforma.y - 4 && piesJugador <= plataforma.y + 10;
+
+      if (dentroX && tocandoArriba) {
+        jugador.y = plataforma.y - jugador.alto;
+        jugador.vy = 0;
+        jugador.enSuelo = true;
+        jugador.x += plataforma.deltaX;
+      }
+    });
+  }
+
   /* ---- Bandera de meta ---- */
 
   function tocarBandera() {
@@ -346,13 +446,19 @@ function inicializarPlumberDash() {
     enemigos = NIVEL.enemigos.map((enemigo) => ({
       x: enemigo.colInicial * TILE,
       y: 7 * TILE - ALTO_ENEMIGO,
-      vx: VELOCIDAD_ENEMIGO,
+      vx: 0,
       vy: 0,
       ancho: ANCHO_ENEMIGO,
       alto: ALTO_ENEMIGO,
       colMinPx: enemigo.colMin * TILE,
       colMaxPx: (enemigo.colMax + 1) * TILE - ANCHO_ENEMIGO,
+      direccion: enemigo.direccionInicial || 1,
       vivo: true,
+    }));
+    plataformas = NIVEL.plataformas.map((plataforma) => ({
+      ...plataforma,
+      direccion: plataforma.direccionInicial,
+      deltaX: 0,
     }));
     efectos = [];
     monedasRecolectadas = 0;
@@ -491,6 +597,9 @@ function inicializarPlumberDash() {
     jugador.y += jugador.vy * delta;
     resolverColisionesY(jugador, true);
 
+    actualizarPlataformas(delta);
+    llevarJugadorEnPlataformas();
+
     if (jugador.enSuelo) tiempoFueraDeSuelo = 0;
     else tiempoFueraDeSuelo += delta;
 
@@ -520,19 +629,54 @@ function inicializarPlumberDash() {
       enemigo.y += enemigo.vy * delta;
       resolverColisionesY(enemigo, false);
 
+      enemigo.vx = VELOCIDAD_ENEMIGO * enemigo.direccion;
       enemigo.x += enemigo.vx * delta;
       resolverColisionesX(enemigo);
 
       if (enemigo.x <= enemigo.colMinPx) {
         enemigo.x = enemigo.colMinPx;
-        enemigo.vx = Math.abs(enemigo.vx);
+        enemigo.direccion = 1;
       } else if (enemigo.x >= enemigo.colMaxPx) {
         enemigo.x = enemigo.colMaxPx;
-        enemigo.vx = -Math.abs(enemigo.vx);
+        enemigo.direccion = -1;
       } else if (enemigo.vx === 0) {
-        enemigo.vx = VELOCIDAD_ENEMIGO;
+        // Chocó contra un obstáculo sólido a media patrulla (tubería, otro
+        // enemigo): invierte el sentido en vez de quedarse vibrando.
+        enemigo.direccion *= -1;
       }
     });
+
+    resolverColisionesEntreEnemigos();
+  }
+
+  function resolverColisionesEntreEnemigos() {
+    for (let i = 0; i < enemigos.length; i++) {
+      const a = enemigos[i];
+      if (!a.vivo) continue;
+
+      for (let j = i + 1; j < enemigos.length; j++) {
+        const b = enemigos[j];
+        if (!b.vivo) continue;
+        if (!hayColisionAABB(a, b)) continue;
+
+        if (a.x < b.x) {
+          a.direccion = -1;
+          b.direccion = 1;
+          const solape = a.x + a.ancho - b.x;
+          a.x -= solape / 2;
+          b.x += solape / 2;
+        } else {
+          a.direccion = 1;
+          b.direccion = -1;
+          const solape = b.x + b.ancho - a.x;
+          b.x -= solape / 2;
+          a.x += solape / 2;
+        }
+
+        a.x = Math.max(a.colMinPx, Math.min(a.x, a.colMaxPx));
+        b.x = Math.max(b.colMinPx, Math.min(b.x, b.colMaxPx));
+      }
+    }
   }
 
   function hayColisionAABB(a, b) {
@@ -603,6 +747,8 @@ function inicializarPlumberDash() {
     }
 
     dibujarBandera();
+
+    plataformas.forEach((plataforma) => dibujarPlataforma(plataforma));
 
     monedas.forEach((moneda) => {
       if (moneda.recolectada) return;
@@ -780,6 +926,21 @@ function inicializarPlumberDash() {
     contexto.lineTo(x, ySuelo - TILE * 5 + 12);
     contexto.closePath();
     contexto.fill();
+  }
+
+  function dibujarPlataforma(plataforma) {
+    const x = plataforma.x - camaraX;
+    const y = plataforma.y;
+
+    contexto.shadowColor = '#00f0ff';
+    contexto.shadowBlur = 6;
+    contexto.fillStyle = '#00c2d1';
+    contexto.fillRect(x, y, plataforma.ancho, plataforma.alto);
+    contexto.shadowBlur = 0;
+
+    contexto.strokeStyle = '#00f0ff';
+    contexto.lineWidth = 1;
+    contexto.strokeRect(x + 0.5, y + 0.5, plataforma.ancho - 1, plataforma.alto - 1);
   }
 
   /* ---- Entrada: teclado ---- */

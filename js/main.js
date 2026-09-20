@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   inicializarFormularioComunidad();
   inicializarInclinacionTarjetas();
   inicializarReacciones();
+  inicializarGeneradorGamertag();
   registrarJuego('reto-neon', inicializarArcade());
   inicializarSelectorJuegos();
   inicializarCodigoSecreto();
@@ -212,6 +213,57 @@ function actualizarBotonReaccion(boton, base, activa) {
   boton.classList.toggle('reaccion--activa', activa);
   boton.setAttribute('aria-pressed', String(activa));
   boton.querySelector('.reaccion__contador').textContent = contador.toLocaleString('es-ES');
+}
+
+/* ---------- Generador de gamertag retro ---------- */
+
+const GAMERTAG_ADJETIVOS = ['NEON', 'PIXEL', 'TURBO', 'RETRO', 'CYBER', 'ULTRA', 'GLITCH', 'VOLT', 'ARCADE', 'ATOMIC'];
+const GAMERTAG_SUSTANTIVOS = ['WOLF', 'FALCON', 'GHOST', 'RIDER', 'VIPER', 'ROGUE', 'PHANTOM', 'BLADE', 'COMET', 'RONIN'];
+
+function generarGamertag() {
+  const adjetivo = GAMERTAG_ADJETIVOS[Math.floor(Math.random() * GAMERTAG_ADJETIVOS.length)];
+  const sustantivo = GAMERTAG_SUSTANTIVOS[Math.floor(Math.random() * GAMERTAG_SUSTANTIVOS.length)];
+  const numero = Math.floor(Math.random() * 90) + 10;
+  return `${adjetivo}_${sustantivo}_${numero}`;
+}
+
+function inicializarGeneradorGamertag() {
+  const resultado = document.getElementById('gamertag-resultado');
+  const botonGenerar = document.getElementById('gamertag-generar');
+  const botonGuardar = document.getElementById('gamertag-guardar');
+  const listaFavoritos = document.getElementById('gamertag-favoritos');
+
+  if (!resultado || !botonGenerar || !botonGuardar || !listaFavoritos) return;
+
+  const CLAVE_FAVORITOS = 'prgamr_gamertags_favoritos';
+  let actual = '';
+  let favoritos = leerAlmacenamiento(CLAVE_FAVORITOS, []);
+  pintarFavoritos();
+
+  function generar() {
+    actual = generarGamertag();
+    resultado.textContent = actual;
+    reproducirTono([440, 660], 'square', 0.07, 0.05);
+  }
+
+  function guardar() {
+    if (!actual || favoritos.includes(actual)) return;
+    favoritos = [actual, ...favoritos].slice(0, 5);
+    escribirAlmacenamiento(CLAVE_FAVORITOS, favoritos);
+    pintarFavoritos();
+  }
+
+  function pintarFavoritos() {
+    listaFavoritos.innerHTML = '';
+    favoritos.forEach((tag) => {
+      const item = document.createElement('li');
+      item.textContent = tag;
+      listaFavoritos.appendChild(item);
+    });
+  }
+
+  botonGenerar.addEventListener('click', generar);
+  botonGuardar.addEventListener('click', guardar);
 }
 
 /* ---------- Arcade rápido (mini-juego en canvas) ---------- */

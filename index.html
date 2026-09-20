@@ -39,6 +39,7 @@
           <li class="nav__item"><a href="#juegos" class="nav__enlace">Juegos</a></li>
           <li class="nav__item"><a href="#novedades" class="nav__enlace">Novedades</a></li>
           <li class="nav__item"><a href="#arcade" class="nav__enlace">Arcade</a></li>
+          <li class="nav__item"><a href="#trivia" class="nav__enlace">Trivia</a></li>
           <li class="nav__item"><a href="#marcadores" class="nav__enlace">Marcadores</a></li>
           <li class="nav__item"><a href="#comentarios" class="nav__enlace">Comentarios</a></li>
         </ul>
@@ -351,7 +352,30 @@
       </ul>
     </section>
 
-    <section class="seccion seccion--alterna" id="marcadores">
+    <section class="seccion seccion--alterna" id="trivia">
+      <h2 class="seccion__titulo">Trivia arcade</h2>
+      <p class="seccion__texto seccion__intro">
+        Pon a prueba tu cultura gamer con preguntas sobre la historia de los salones
+        recreativos. ¿Cuántas aciertas?
+      </p>
+
+      <div class="trivia">
+        <div class="trivia__marcador">
+          <p>Pregunta <span id="trivia-numero">0</span>/8</p>
+          <p>Aciertos: <span id="trivia-aciertos">0</span></p>
+          <p>Récord: <span id="trivia-record">0</span></p>
+        </div>
+
+        <div class="trivia__tarjeta">
+          <p class="trivia__pregunta" id="trivia-pregunta">Pulsa "Comenzar" para jugar.</p>
+          <div class="trivia__opciones" id="trivia-opciones"></div>
+        </div>
+
+        <button class="boton boton--primario" id="trivia-comenzar" type="button">Comenzar</button>
+      </div>
+    </section>
+
+    <section class="seccion" id="marcadores">
       <h2 class="seccion__titulo">Marcadores globales</h2>
       <p class="seccion__texto seccion__intro">
         Una vista previa de cómo se verá la tabla de posiciones cuando abramos el
@@ -404,7 +428,7 @@
       </div>
     </section>
 
-    <section class="seccion" id="comunidad">
+    <section class="seccion seccion--alterna" id="comunidad">
       <div class="comunidad reveal">
         <h2 class="seccion__titulo">Únete a la comunidad</h2>
         <p class="seccion__texto seccion__intro">
@@ -428,10 +452,20 @@
           <button type="submit" class="boton boton--primario">Quiero jugar primero</button>
         </form>
         <p class="comunidad__mensaje" id="comunidad-mensaje" role="status" aria-live="polite"></p>
+
+        <div class="generador-gamertag">
+          <p class="seccion__texto">¿Aún no tienes alias de jugador? Genera uno al momento.</p>
+          <p class="generador-gamertag__resultado" id="gamertag-resultado">¿Cuál es tu alias arcade?</p>
+          <div class="generador-gamertag__acciones">
+            <button class="boton boton--secundario" id="gamertag-generar" type="button">Generar gamertag</button>
+            <button class="generador-gamertag__guardar" id="gamertag-guardar" type="button" aria-label="Guardar en favoritos">♥</button>
+          </div>
+          <ul class="generador-gamertag__favoritos" id="gamertag-favoritos"></ul>
+        </div>
       </div>
     </section>
 
-    <section class="seccion seccion--alterna" id="comentarios">
+    <section class="seccion" id="comentarios">
       <h2 class="seccion__titulo">Comentarios</h2>
       <p class="seccion__texto seccion__intro">
         Cuéntanos qué juego quieres primero, propone ideas o preséntate. Los comentarios
@@ -501,5 +535,6 @@
 
   <script src="js/main.js" defer></script>
   <script src="js/juego-plumber.js" defer></script>
+  <script src="js/trivia.js" defer></script>
 </body>
 </html>
