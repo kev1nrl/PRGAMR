@@ -226,8 +226,13 @@ function inicializarPlumberDash() {
   function esSolido(col, fila) {
     if (col < 0 || col >= NIVEL.anchoTiles) return true;
     if ((fila === 7 || fila === 8) && sueloEnColumna(col)) return true;
-    if (esBandera(col, fila)) return true;
     return Boolean(obtenerBloque(col, fila));
+  }
+
+  // La bandera solo bloquea el avance lateral: nunca debe poder "pisarse"
+  // desde arriba, o el jugador se quedaría flotando sobre ella al caer cerca.
+  function esSolidoParaAvance(col, fila) {
+    return esSolido(col, fila) || esBandera(col, fila);
   }
 
   function resolverColisionesX(entidad) {
@@ -237,7 +242,7 @@ function inicializarPlumberDash() {
     if (entidad.vx > 0) {
       const columna = Math.floor((entidad.x + entidad.ancho - 1) / TILE);
       for (let fila = filaSuperior; fila <= filaInferior; fila++) {
-        if (esSolido(columna, fila)) {
+        if (esSolidoParaAvance(columna, fila)) {
           entidad.x = columna * TILE - entidad.ancho;
           entidad.vx = 0;
           if (entidad === jugador && esBandera(columna, fila)) {
@@ -249,7 +254,7 @@ function inicializarPlumberDash() {
     } else if (entidad.vx < 0) {
       const columna = Math.floor(entidad.x / TILE);
       for (let fila = filaSuperior; fila <= filaInferior; fila++) {
-        if (esSolido(columna, fila)) {
+        if (esSolidoParaAvance(columna, fila)) {
           entidad.x = (columna + 1) * TILE;
           entidad.vx = 0;
           break;
