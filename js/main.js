@@ -6,9 +6,47 @@ document.addEventListener('DOMContentLoaded', () => {
   inicializarFormularioComunidad();
   inicializarInclinacionTarjetas();
   inicializarReacciones();
-  inicializarArcade();
+  registrarJuego('reto-neon', inicializarArcade());
+  inicializarSelectorJuegos();
   inicializarCodigoSecreto();
 });
+
+/* ---------- Registro compartido de minijuegos ---------- */
+
+function registrarJuego(id, controlador) {
+  window.PRGAMR_JUEGOS = window.PRGAMR_JUEGOS || {};
+  if (controlador) {
+    window.PRGAMR_JUEGOS[id] = controlador;
+  }
+}
+
+function inicializarSelectorJuegos() {
+  const botones = document.querySelectorAll('.selector-juegos__boton');
+  if (botones.length === 0) return;
+
+  botones.forEach((boton) => {
+    boton.addEventListener('click', () => {
+      const juegoElegido = boton.dataset.juego;
+
+      botones.forEach((otroBoton) => {
+        const activo = otroBoton === boton;
+        otroBoton.classList.toggle('selector-juegos__boton--activo', activo);
+        otroBoton.setAttribute('aria-selected', String(activo));
+      });
+
+      document.querySelectorAll('.panel-juego').forEach((panel) => {
+        const esElegido = panel.id === `panel-${juegoElegido}`;
+
+        if (!esElegido) {
+          const idJuegoPanel = panel.id.replace('panel-', '');
+          window.PRGAMR_JUEGOS?.[idJuegoPanel]?.detener?.();
+        }
+
+        panel.classList.toggle('panel-juego--oculto', !esElegido);
+      });
+    });
+  });
+}
 
 function inicializarMenuMovil() {
   const boton = document.getElementById('menu-toggle');
@@ -192,8 +230,8 @@ function inicializarArcade() {
   const ALTO = canvas.height;
   const CLAVE_RECORD = 'prgamr_arcade_record';
 
-  const overlayTitulo = overlay.querySelector('.juego-arcade__overlay-titulo');
-  const overlayTexto = overlay.querySelector('.juego-arcade__overlay-texto');
+  const overlayTitulo = overlay.querySelector('.juego-overlay-titulo');
+  const overlayTexto = overlay.querySelector('.juego-overlay-texto');
 
   let record = Number(leerAlmacenamiento(CLAVE_RECORD, 0));
   elementoRecord.textContent = record;
@@ -243,7 +281,7 @@ function inicializarArcade() {
 
   function iniciarJuego() {
     reiniciarEstado();
-    overlay.classList.add('juego-arcade__overlay--oculto');
+    overlay.classList.add('juego-overlay--oculto');
     enMarcha = true;
     idAnimacion = requestAnimationFrame(bucle);
   }
@@ -355,10 +393,23 @@ function inicializarArcade() {
     overlayTitulo.textContent = 'Game Over';
     overlayTexto.textContent = `Puntuación: ${puntuacionFinal} · Récord: ${record}`;
     botonIniciar.textContent = 'Jugar de nuevo';
-    overlay.classList.remove('juego-arcade__overlay--oculto');
+    overlay.classList.remove('juego-overlay--oculto');
   }
 
+  function detener() {
+    if (!enMarcha) return;
+    enMarcha = false;
+    cancelAnimationFrame(idAnimacion);
+    overlayTitulo.textContent = 'Reto Neón';
+    overlayTexto.textContent = 'Esquiva los bloques todo lo que puedas.';
+    botonIniciar.textContent = 'Jugar';
+    overlay.classList.remove('juego-overlay--oculto');
+  }
+
+  reiniciarEstado();
   dibujar();
+
+  return { detener };
 }
 
 /* ---------- Código Konami (easter egg) ---------- */

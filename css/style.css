@@ -595,17 +595,58 @@ body::after {
   color: var(--color-texto-suave);
 }
 
-/* ---------- Arcade rápido (mini-juego) ---------- */
+/* ---------- Selector de juegos ---------- */
 
-.juego-arcade {
+.selector-juegos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: var(--espaciado-lg);
+}
+
+.selector-juegos__boton {
+  font-family: var(--fuente-display);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-borde);
+  background: transparent;
+  color: var(--color-texto-suave);
+  cursor: pointer;
+  transition: border-color var(--transicion-base), color var(--transicion-base), box-shadow var(--transicion-base);
+}
+
+.selector-juegos__boton:hover,
+.selector-juegos__boton:focus-visible {
+  color: var(--color-texto);
+  border-color: var(--color-secundario);
+}
+
+.selector-juegos__boton--activo {
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+  box-shadow: var(--sombra-neon-primario);
+}
+
+.panel-juego--oculto {
+  display: none;
+}
+
+/* ---------- Juegos jugables (tablero compartido) ---------- */
+
+.juego-jugable {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--espaciado-md);
 }
 
-.juego-arcade__marcador {
+.juego-marcador {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--espaciado-lg);
   font-family: var(--fuente-display);
   font-size: 0.65rem;
@@ -613,13 +654,20 @@ body::after {
   letter-spacing: 1px;
 }
 
-.juego-arcade__tablero {
+.juego-tablero {
   position: relative;
   width: 100%;
+}
+
+.juego-tablero--reto-neon {
   max-width: 320px;
 }
 
-.juego-arcade__tablero canvas {
+.juego-tablero--plumber {
+  max-width: 480px;
+}
+
+.juego-tablero canvas {
   display: block;
   width: 100%;
   height: auto;
@@ -629,7 +677,7 @@ body::after {
   touch-action: none;
 }
 
-.juego-arcade__overlay {
+.juego-overlay {
   position: absolute;
   inset: 0;
   display: flex;
@@ -643,19 +691,77 @@ body::after {
   border-radius: var(--radio-borde);
 }
 
-.juego-arcade__overlay--oculto {
+.juego-overlay--oculto {
   display: none;
 }
 
-.juego-arcade__overlay-titulo {
+.juego-overlay-titulo {
   font-family: var(--fuente-display);
   font-size: 1rem;
   color: var(--color-texto);
 }
 
-.juego-arcade__overlay-texto {
+.juego-overlay-texto {
   color: var(--color-texto-suave);
   font-size: 0.9rem;
+}
+
+/* ---------- Controles táctiles (Plumber Dash) ---------- */
+
+.juego-controles {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--espaciado-sm);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--espaciado-sm);
+  pointer-events: none;
+}
+
+.control-tactil {
+  pointer-events: auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-borde);
+  background-color: rgba(11, 5, 24, 0.55);
+  color: var(--color-texto);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  user-select: none;
+}
+
+.control-tactil:active {
+  border-color: var(--color-secundario);
+  box-shadow: var(--sombra-neon-secundario);
+}
+
+.juego-mute {
+  background: transparent;
+  border: 1px solid var(--color-borde);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  color: var(--color-texto-suave);
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color var(--transicion-base), color var(--transicion-base);
+}
+
+.juego-mute:hover,
+.juego-mute:focus-visible {
+  color: var(--color-texto);
+  border-color: var(--color-secundario);
+}
+
+@media (min-width: 768px) {
+  .juego-controles {
+    display: none;
+  }
 }
 
 /* ---------- Características ---------- */

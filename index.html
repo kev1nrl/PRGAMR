@@ -243,24 +243,74 @@
     </section>
 
     <section class="seccion seccion--alterna" id="arcade">
-      <h2 class="seccion__titulo">Arcade rápido</h2>
+      <h2 class="seccion__titulo">Zona arcade</h2>
       <p class="seccion__texto seccion__intro">
-        Un adelanto jugable mientras terminamos el catálogo: esquiva los bloques de neón
-        el mayor tiempo posible. Mueve el ratón o el dedo sobre el tablero.
+        Juegos jugables de verdad, sin salir del navegador. Elige uno: iremos sumando más,
+        uno por uno.
       </p>
 
-      <div class="juego-arcade">
-        <div class="juego-arcade__marcador">
-          <p>Puntuación: <span id="arcade-puntuacion">0</span></p>
-          <p>Récord: <span id="arcade-record">0</span></p>
-        </div>
-        <div class="juego-arcade__tablero">
-          <canvas id="arcade-canvas" width="320" height="420"></canvas>
-          <div class="juego-arcade__overlay" id="arcade-overlay">
-            <p class="juego-arcade__overlay-titulo">Reto Neón</p>
-            <p class="juego-arcade__overlay-texto">Esquiva los bloques todo lo que puedas.</p>
-            <button class="boton boton--primario" id="arcade-iniciar" type="button">Jugar</button>
+      <div class="selector-juegos" role="tablist" aria-label="Elegir minijuego">
+        <button
+          class="selector-juegos__boton selector-juegos__boton--activo"
+          type="button"
+          data-juego="reto-neon"
+          role="tab"
+          aria-selected="true"
+        >
+          Reto Neón
+        </button>
+        <button
+          class="selector-juegos__boton"
+          type="button"
+          data-juego="plumber-dash"
+          role="tab"
+          aria-selected="false"
+        >
+          Plumber Dash
+        </button>
+      </div>
+
+      <div class="panel-juego" id="panel-reto-neon" role="tabpanel">
+        <div class="juego-jugable">
+          <div class="juego-marcador">
+            <p>Puntuación: <span id="arcade-puntuacion">0</span></p>
+            <p>Récord: <span id="arcade-record">0</span></p>
           </div>
+          <div class="juego-tablero juego-tablero--reto-neon">
+            <canvas id="arcade-canvas" width="320" height="420"></canvas>
+            <div class="juego-overlay" id="arcade-overlay">
+              <p class="juego-overlay-titulo">Reto Neón</p>
+              <p class="juego-overlay-texto">Esquiva los bloques todo lo que puedas.</p>
+              <button class="boton boton--primario" id="arcade-iniciar" type="button">Jugar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-juego panel-juego--oculto" id="panel-plumber-dash" role="tabpanel">
+        <div class="juego-jugable">
+          <div class="juego-marcador">
+            <p>Monedas: <span id="plumber-monedas">0</span></p>
+            <p>Vidas: <span id="plumber-vidas">3</span></p>
+            <p>Récord: <span id="plumber-record">0</span></p>
+          </div>
+          <div class="juego-tablero juego-tablero--plumber">
+            <canvas id="plumber-canvas" width="384" height="216"></canvas>
+            <div class="juego-overlay" id="plumber-overlay">
+              <p class="juego-overlay-titulo">Plumber Dash</p>
+              <p class="juego-overlay-texto">
+                Llega a la bandera esquivando huecos y enemigos. Flechas o A/D para moverte,
+                Espacio o ↑ para saltar. En móvil, usa los botones de abajo.
+              </p>
+              <button class="boton boton--primario" id="plumber-iniciar" type="button">Jugar</button>
+            </div>
+            <div class="juego-controles" id="plumber-controles">
+              <button class="control-tactil" type="button" data-control="izquierda" aria-label="Mover a la izquierda">◀</button>
+              <button class="control-tactil" type="button" data-control="salto" aria-label="Saltar">▲</button>
+              <button class="control-tactil" type="button" data-control="derecha" aria-label="Mover a la derecha">▶</button>
+            </div>
+          </div>
+          <button class="juego-mute" id="plumber-mute" type="button" aria-pressed="false">🔊 Música</button>
         </div>
       </div>
     </section>
@@ -450,5 +500,6 @@
   </div>
 
   <script src="js/main.js" defer></script>
+  <script src="js/juego-plumber.js" defer></script>
 </body>
 </html>
